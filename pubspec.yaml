@@ -45,8 +45,6 @@ dependencies:
   firebase_storage: ^11.1.2
   firebase_database: ^10.1.2
 
-  email_validator: ^2.0.1
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
