@@ -18,7 +18,7 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Timer(
-      const Duration(seconds: 5),
+      const Duration(seconds: 8),
       () {
         Navigator.pushReplacementNamed(context, MainPage.route);
       },
@@ -41,9 +41,9 @@ class SplashScreen extends StatelessWidget {
               child: Column(
                 children: const [
                   Text(
-                    'Restaurant App',
+                    'Food Ordering App',
                     style: TextStyle(
-                        color: Colors.white, letterSpacing: 1, fontSize: 16),
+                        color: Colors.white, letterSpacing: 1, fontSize: 30),
                   ),
                   SizedBox(height: 5),
                   Text(
