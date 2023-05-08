@@ -9,19 +9,18 @@ import 'package:restaurant_app/screens/HomePage.dart';
 import 'package:restaurant_app/screens/MenuPage.dart';
 import 'package:restaurant_app/screens/CartPage.dart';
 import 'package:restaurant_app/screens/SignUpScreen.dart';
+import 'package:restaurant_app/screens/SplashScreen.dart';
 import 'package:restaurant_app/utils.dart';
 
 import 'auth_page.dart';
+import 'screens/MainPage.dart';
 
-
-Future main() async{
+Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
   runApp(MyApp());
 }
-
-final navigatorKey = GlobalKey<NavigatorState>();
 
 class MyApp extends StatelessWidget {
   static final String title = 'Setup Firebase';
@@ -29,35 +28,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false,
-      
-      home: MainPage(),
+      routes: {
+        SplashScreen.route: (context) => const SplashScreen(),
+        MainPage.route: (context) => MainPage(),
+        HomePage.route: (context) => HomePage(),
+        AuthPage.route: (context) => AuthPage(),
+      },
+      initialRoute: SplashScreen.route,
     );
   }
 }
-
-  class MainPage extends StatelessWidget {
-    
-    @override
-    Widget build(BuildContext context) => Scaffold(
-      body: StreamBuilder<User?>(
-        stream: FirebaseAuth.instance.authStateChanges(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting){
-            return Center(child: CircularProgressIndicator());
-          } else if (snapshot.hasError) {
-            return Center(child: Text('Something went Wrong!'));
-          } if (snapshot.hasData){
-            return HomePage();
-          } else {
-            return AuthPage();
-          }
-        }
-      ),
-    );
-  }
-
-  
-
-
